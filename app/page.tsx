@@ -10,7 +10,7 @@ export default function Home() {
     e.preventDefault()
 
     // Temporary fake response (we'll wire this to GPT/Supabase in Step 2)
-    setResponse(`🔍 Great! Based on what you're looking for, here's an off-market deal that might be perfect:
+    setResponse(`🔍 Great! Based on what you&apos;re looking for, here&apos;s an off-market deal that might be perfect:
 
 **Off-Market Deal – Well-Established Plumbing Services**
 **Name:** Hidden
@@ -27,7 +27,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-center px-4">
         <h1 className="text-white text-5xl md:text-7xl font-bold mb-4">Buy or sell your <br />Business in minutes</h1>
         <p className="text-white text-lg md:text-xl mb-8 max-w-xl">
-          Join thousands using Australia's most trusted platform to access off-market deals and sell faster with AI
+          Join thousands using Australia&apos;s most trusted platform to access off-market deals and sell faster with AI
         </p>
 
         <form onSubmit={handleSubmit} className="flex items-center w-full max-w-lg">
