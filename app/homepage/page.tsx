@@ -271,7 +271,7 @@ export default function Home() {
                 {messages[messages.length - 1]?.listings?.[0]?.isAiGenerated ? (
                   <>
                     <h2 className="text-xl font-bold text-white mb-2">👉 Want to be notified when one becomes available?</h2>
-                    <p className="text-gray-300 mb-4 text-sm">Enter your details, and we'll be the first to let you know when a matching listing goes live.</p>
+                    <p className="text-gray-300 mb-4 text-sm">Enter your details, and we&apos;ll be the first to let you know when a matching listing goes live.</p>
                   </>
                 ) : (
                   <>

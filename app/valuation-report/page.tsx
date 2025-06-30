@@ -172,7 +172,7 @@ export default function ValuationReportPage() {
         {/* Recommendations Card */}
         <div className="mb-8 p-6 rounded-xl bg-white border border-gray-200">
           <h3 className="text-xl font-semibold text-blue-900 mb-2">Recommendations</h3>
-          <p className="text-gray-700 mb-2">Steps you can take to increase your business's value.</p>
+          <p className="text-gray-700 mb-2">Steps you can take to increase your business&apos;s value.</p>
           <div className="prose prose-sm max-w-none text-blue-900 whitespace-pre-line">{aiSections?.recommendations || 'No recommendations provided.'}</div>
         </div>
         {/* Benchmarks Card */}

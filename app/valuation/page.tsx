@@ -10,9 +10,6 @@ export default function EnhancedValuationPage() {
   const [selectedSubCategory, setSelectedSubCategory] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const [valuationResult, setValuationResult] = useState<string | null>(null)
-  const [calculatedValue, setCalculatedValue] = useState<number | null>(null)
-  const [valuationMethod, setValuationMethod] = useState<string | null>(null)
   
   // Base form data that all industries share
   const [baseFormData, setBaseFormData] = useState({
@@ -243,7 +240,7 @@ export default function EnhancedValuationPage() {
         }
       }
 
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('valuations')
         .insert([submissionData])
 
@@ -267,9 +264,6 @@ export default function EnhancedValuationPage() {
         },
       })
       const apiData = await res.json()
-      setValuationResult(apiData.valuation || 'Error generating valuation')
-      setCalculatedValue(apiData.calculatedValue)
-      setValuationMethod(apiData.valuationMethod)
 
       // Save report data to localStorage and redirect
       localStorage.setItem('valuationResult', JSON.stringify(apiData))
