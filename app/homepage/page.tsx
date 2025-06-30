@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { supabase } from '../lib/supabase'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import LatestBlogsSection from './LatestBlogsSection'
 
 // Define the types for our data structures
@@ -87,8 +88,11 @@ export default function Home() {
         setShowLeadForm(true)
       }
 
-    } catch (err: any) {
-      const errorMessage: Message = { role: 'assistant', content: err.message }
+    } catch (err: unknown) {
+      const errorMessage: Message = { 
+        role: 'assistant', 
+        content: err instanceof Error ? err.message : 'An error occurred' 
+      }
       setMessages(prev => [...prev, errorMessage])
     } finally {
       setIsLoading(false)
@@ -112,8 +116,8 @@ export default function Home() {
       setSubmitMessage('Thank you! We will be in touch with exclusive listings shortly.')
       setLeadName('')
       setLeadEmail('')
-    } catch (err: any) {
-      setSubmitMessage(`Error: ${err.message}`)
+    } catch (err: unknown) {
+      setSubmitMessage(`Error: ${err instanceof Error ? err.message : 'An error occurred'}`)
     } finally {
       setIsSubmitting(false)
     }
@@ -126,13 +130,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href="/" className="block flex-shrink-0">
+            <Link href="/" className="block flex-shrink-0">
               <img 
                 src="/logo1.png" 
                 alt="ABX Logo" 
                 className="h-24 md:h-28"
               />
-            </a>
+            </Link>
             {/* Navigation */}
             <div className="flex items-center gap-3">
               <button className="text-white text-sm font-medium hover:text-gray-300 transition-colors" onClick={() => router.push('/signin')}>
@@ -169,7 +173,7 @@ export default function Home() {
                 Buy or sell your <br />Business in minutes
               </h1>
               <p className="text-gray-300 mt-4 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-                Join thousands using Australia's most trusted platform to access off-market deals and sell faster with AI
+                Join thousands using Australia&apos;s most trusted platform to access off-market deals and sell faster with AI
               </p>
             </div>
             
@@ -405,7 +409,7 @@ export default function Home() {
                   className="h-10 mb-4 filter brightness-0 invert"
                 />
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                  Australia's most trusted platform for buying and selling businesses. Connect with thousands of verified buyers and sellers.
+                  Australia&apos;s most trusted platform for buying and selling businesses. Connect with thousands of verified buyers and sellers.
                 </p>
                 <div className="flex space-x-4">
                   <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -442,7 +446,7 @@ export default function Home() {
               <div>
                 <h3 className="text-white font-semibold mb-4 text-sm">Resources</h3>
                 <ul className="space-y-2">
-                  <li><a href="/blog" className="text-gray-400 hover:text-white transition-colors text-sm">Blog</a></li>
+                  <li><Link href="/blog" className="text-gray-400 hover:text-white transition-colors text-sm">Blog</Link></li>
                   <li><a href="/guides" className="text-gray-400 hover:text-white transition-colors text-sm">Buying Guides</a></li>
                   <li><a href="/market-insights" className="text-gray-400 hover:text-white transition-colors text-sm">Market Insights</a></li>
                   <li><a href="/success-stories" className="text-gray-400 hover:text-white transition-colors text-sm">Success Stories</a></li>

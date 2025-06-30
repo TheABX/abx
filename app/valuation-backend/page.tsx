@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react'
 
 const ValuationBackendPage = () => {
-  const [report, setReport] = useState<any>(null)
-  const [businessData, setBusinessData] = useState<any>({})
-  const [valuationResults, setValuationResults] = useState<any>({})
+  const [report, setReport] = useState<Record<string, unknown> | null>(null)
+  const [businessData, setBusinessData] = useState<Record<string, unknown>>({})
+  const [valuationResults, setValuationResults] = useState<Record<string, unknown>>({})
 
   useEffect(() => {
     const stored = localStorage.getItem('valuationResult')
@@ -27,7 +27,7 @@ const ValuationBackendPage = () => {
       })
 
       // Extract valuation results
-      const { calculatedValue, valuationMethod, metrics, aiSections } = parsedReport
+      const { calculatedValue, metrics, aiSections } = parsedReport
       
       // Calculate saleability score
       const profitMargin = metrics?.profitMargin || 0

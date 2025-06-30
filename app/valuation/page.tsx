@@ -27,7 +27,7 @@ export default function EnhancedValuationPage() {
   })
 
   // Industry-specific form data
-  const [industryFormData, setIndustryFormData] = useState<Record<string, any>>({})
+  const [industryFormData, setIndustryFormData] = useState<Record<string, unknown>>({})
 
   const industries = [
     'Trade Business',
@@ -299,15 +299,22 @@ export default function EnhancedValuationPage() {
     }
   }
 
-  const renderField = (field: any, value: any, onChange: any) => {
+  const renderField = (field: {
+    name: string;
+    type: string;
+    required?: boolean;
+    placeholder?: string;
+    options?: string[];
+  }, value: unknown, onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void) => {
     const baseClasses = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+    const stringValue = String(value || '')
     
     switch (field.type) {
       case 'select':
         return (
           <select
             name={field.name}
-            value={value || ''}
+            value={stringValue}
             onChange={onChange}
             required={field.required}
             className={baseClasses}
@@ -322,7 +329,7 @@ export default function EnhancedValuationPage() {
         return (
           <textarea
             name={field.name}
-            value={value || ''}
+            value={stringValue}
             onChange={onChange}
             required={field.required}
             placeholder={field.placeholder}
@@ -335,7 +342,7 @@ export default function EnhancedValuationPage() {
           <input
             type={field.type || 'text'}
             name={field.name}
-            value={value || ''}
+            value={stringValue}
             onChange={onChange}
             required={field.required}
             placeholder={field.placeholder}

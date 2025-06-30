@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer, LabelList } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, LabelList } from 'recharts';
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
 
@@ -30,7 +30,7 @@ function RevenuePieChart({ revenue, profit, addBacks }: { revenue: number, profi
 }
 
 export default function ValuationReportPage() {
-  const [report, setReport] = useState<any>(null);
+  const [report, setReport] = useState<Record<string, unknown> | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem('valuationResult');
@@ -160,7 +160,7 @@ export default function ValuationReportPage() {
         {/* Key Factors Card */}
         <div className="mb-8 p-6 rounded-xl bg-white border border-gray-200">
           <h3 className="text-xl font-semibold text-blue-900 mb-2">Key Value Drivers</h3>
-          <p className="text-gray-700 mb-2">These are the main drivers that impact your business's value.</p>
+          <p className="text-gray-700 mb-2">These are the main drivers that impact your business&apos;s value.</p>
           <div className="prose prose-sm max-w-none text-blue-900 whitespace-pre-line">{aiSections?.keyFactors || 'No key factors provided.'}</div>
         </div>
         {/* Risks & Opportunities Card */}
@@ -178,7 +178,7 @@ export default function ValuationReportPage() {
         {/* Benchmarks Card */}
         <div className="mb-8 p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 shadow-lg">
           <h3 className="text-xl font-bold text-blue-900 mb-2">Market Context & Industry Benchmarks</h3>
-          <p className="text-gray-700 mb-4">How does your business's valuation multiple compare to the industry average?</p>
+          <p className="text-gray-700 mb-4">How does your business&apos;s valuation multiple compare to the industry average?</p>
           {/* Custom Legend */}
           <div className="flex items-center gap-6 mb-2">
             <div className="flex items-center gap-2">
