@@ -117,7 +117,7 @@ const ValuationBackendPage = () => {
             </div>
             <div>
               <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#111827', margin: 0 }}>Professional Business Valuation Report</h1>
-              <p style={{ color: '#6b7280', margin: '4px 0 0 0' }}>{businessData.businessName} • {businessData.industry} • {businessData.location}</p>
+              <p style={{ color: '#6b7280', margin: '4px 0 0 0' }}>{String(businessData.businessName)} • {String(businessData.industry)} • {String(businessData.location)}</p>
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>
@@ -132,25 +132,25 @@ const ValuationBackendPage = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px', marginBottom: '32px' }}>
           <div style={{ background: 'white', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', padding: '24px', borderLeft: '4px solid #2563eb' }}>
             <h3 style={{ fontSize: '12px', fontWeight: '500', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 8px 0' }}>Estimated Value</h3>
-            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{formatCurrency(valuationResults.estimatedValue)}</p>
-            <p style={{ fontSize: '14px', color: '#6b7280', margin: '4px 0 0 0' }}>±{((valuationResults.highRange - valuationResults.lowRange) / 2 / valuationResults.estimatedValue * 100).toFixed(0)}% range</p>
+            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{formatCurrency(Number(valuationResults.estimatedValue))}</p>
+            <p style={{ fontSize: '14px', color: '#6b7280', margin: '4px 0 0 0' }}>±{(((Number(valuationResults.highRange) - Number(valuationResults.lowRange)) / 2) / Number(valuationResults.estimatedValue) * 100).toFixed(0)}% range</p>
           </div>
           
           <div style={{ background: 'white', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', padding: '24px', borderLeft: '4px solid #10b981' }}>
             <h3 style={{ fontSize: '12px', fontWeight: '500', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 8px 0' }}>Saleability Score</h3>
-            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{valuationResults.saleabilityScore}/10</p>
+            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{String(valuationResults.saleabilityScore)}/10</p>
             <p style={{ fontSize: '14px', color: '#10b981', margin: '4px 0 0 0' }}>Above Average</p>
           </div>
           
           <div style={{ background: 'white', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', padding: '24px', borderLeft: '4px solid #8b5cf6' }}>
             <h3 style={{ fontSize: '12px', fontWeight: '500', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 8px 0' }}>Revenue Multiple</h3>
-            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{valuationResults.multiple}x</p>
+            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{String(valuationResults.multiple)}x</p>
             <p style={{ fontSize: '14px', color: '#8b5cf6', margin: '4px 0 0 0' }}>SDE Multiple</p>
           </div>
           
           <div style={{ background: 'white', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', padding: '24px', borderLeft: '4px solid #2563eb' }}>
             <h3 style={{ fontSize: '12px', fontWeight: '500', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 8px 0' }}>Confidence Level</h3>
-            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{valuationResults.confidenceLevel}%</p>
+            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '8px 0' }}>{String(valuationResults.confidenceLevel)}%</p>
             <p style={{ fontSize: '14px', color: '#2563eb', margin: '4px 0 0 0' }}>High</p>
           </div>
         </div>
@@ -160,16 +160,16 @@ const ValuationBackendPage = () => {
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', marginBottom: '16px' }}>Business Valuation Analysis</h2>
             <div style={{ fontSize: '72px', fontWeight: 'bold', color: '#2563eb', marginBottom: '16px' }}>
-              {formatCurrency(valuationResults.estimatedValue)}
+              {formatCurrency(Number(valuationResults.estimatedValue))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '32px', fontSize: '18px', marginBottom: '24px' }}>
               <div>
                 <span style={{ color: '#6b7280' }}>Low Range: </span>
-                <span style={{ fontWeight: '600' }}>{formatCurrency(valuationResults.lowRange)}</span>
+                <span style={{ fontWeight: '600' }}>{formatCurrency(Number(valuationResults.lowRange))}</span>
               </div>
               <div>
                 <span style={{ color: '#6b7280' }}>High Range: </span>
-                <span style={{ fontWeight: '600' }}>{formatCurrency(valuationResults.highRange)}</span>
+                <span style={{ fontWeight: '600' }}>{formatCurrency(Number(valuationResults.highRange))}</span>
               </div>
             </div>
             
@@ -197,9 +197,9 @@ const ValuationBackendPage = () => {
                 }} />
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px', fontSize: '14px', color: '#6b7280' }}>
-                <span>{formatCurrency(valuationResults.lowRange * 0.8)}</span>
+                <span>{formatCurrency(Number(valuationResults.lowRange) * 0.8)}</span>
                 <span style={{ color: '#2563eb', fontWeight: '600' }}>Most Likely Value</span>
-                <span>{formatCurrency(valuationResults.highRange * 1.2)}</span>
+                <span>{formatCurrency(Number(valuationResults.highRange) * 1.2)}</span>
               </div>
             </div>
           </div>
@@ -213,7 +213,7 @@ const ValuationBackendPage = () => {
             <div style={{ background: '#f8fafc', borderRadius: '12px', padding: '24px' }}>
               <h4 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '16px', color: '#2563eb' }}>Your Business Multiple</h4>
               <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#2563eb', marginBottom: '8px' }}>
-                {valuationResults.multiple}x
+                {String(valuationResults.multiple)}x
               </div>
               <p style={{ color: '#6b7280', fontSize: '14px' }}>Based on your financial performance</p>
             </div>
@@ -221,7 +221,7 @@ const ValuationBackendPage = () => {
             <div style={{ background: '#fef3c7', borderRadius: '12px', padding: '24px' }}>
               <h4 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '16px', color: '#92400e' }}>Industry Average</h4>
               <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#92400e', marginBottom: '8px' }}>
-                {valuationResults.industryBenchmark}x
+                {String(valuationResults.industryBenchmark)}x
               </div>
               <p style={{ color: '#b45309', fontSize: '14px' }}>Typical for {businessData.industry} businesses</p>
             </div>
@@ -231,11 +231,10 @@ const ValuationBackendPage = () => {
             <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px', color: valuationResults.multiple > valuationResults.industryBenchmark ? '#166534' : '#dc2626' }}>
               {valuationResults.multiple > valuationResults.industryBenchmark ? 'Above Industry Average' : 'Below Industry Average'}
             </h4>
-            <p style={{ fontSize: '14px', color: valuationResults.multiple > valuationResults.industryBenchmark ? '#166534' : '#dc2626' }}>
-              {valuationResults.multiple > valuationResults.industryBenchmark 
-                ? `Your business is performing ${((valuationResults.multiple / valuationResults.industryBenchmark - 1) * 100).toFixed(0)}% better than the industry average.`
-                : `Your business is ${((1 - valuationResults.multiple / valuationResults.industryBenchmark) * 100).toFixed(0)}% below the industry average. Consider implementing the recommendations to improve your valuation.`
-              }
+            <p style={{ fontSize: '14px', color: Number(valuationResults.multiple) > Number(valuationResults.industryBenchmark) ? '#166534' : '#dc2626' }}>
+              {Number(valuationResults.multiple) > Number(valuationResults.industryBenchmark)
+                ? `Your business is performing ${((Number(valuationResults.multiple) / Number(valuationResults.industryBenchmark) - 1) * 100).toFixed(0)}% better than the industry average.`
+                : `Your business is ${((1 - Number(valuationResults.multiple) / Number(valuationResults.industryBenchmark)) * 100).toFixed(0)}% below the industry average. Consider implementing the recommendations to improve your valuation.`}
             </p>
           </div>
         </div>
@@ -246,8 +245,8 @@ const ValuationBackendPage = () => {
           
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
             <span style={{ fontSize: '18px', fontWeight: '500' }}>Overall Score</span>
-            <span style={{ fontSize: '36px', fontWeight: 'bold', color: getSaleabilityColor(valuationResults.saleabilityScore) }}>
-              {valuationResults.saleabilityScore}/10
+            <span style={{ fontSize: '36px', fontWeight: 'bold', color: getSaleabilityColor(Number(valuationResults.saleabilityScore)) }}>
+              {String(valuationResults.saleabilityScore)}/10
             </span>
           </div>
           
@@ -258,8 +257,8 @@ const ValuationBackendPage = () => {
               top: 0, 
               left: 0, 
               height: '100%', 
-              width: `${(valuationResults.saleabilityScore / 10) * 100}%`,
-              background: getSaleabilityColor(valuationResults.saleabilityScore),
+              width: `${(Number(valuationResults.saleabilityScore) / 10) * 100}%`,
+              background: getSaleabilityColor(Number(valuationResults.saleabilityScore)),
               borderRadius: '8px',
               transition: 'width 1s ease-out'
             }} />
@@ -268,18 +267,18 @@ const ValuationBackendPage = () => {
           <div style={{ 
             padding: '16px', 
             borderRadius: '8px', 
-            borderLeft: `4px solid ${getSaleabilityColor(valuationResults.saleabilityScore)}`,
-            background: `${getSaleabilityColor(valuationResults.saleabilityScore)}10`
+            borderLeft: `4px solid ${getSaleabilityColor(Number(valuationResults.saleabilityScore))}`,
+            background: `${getSaleabilityColor(Number(valuationResults.saleabilityScore))}10`
           }}>
             <h4 style={{ fontWeight: '600', fontSize: '18px', marginBottom: '8px' }}>
-              {valuationResults.saleabilityScore >= 8 ? 'Highly Saleable Business' : 
-               valuationResults.saleabilityScore >= 6 ? 'Moderately Saleable Business' : 
-               valuationResults.saleabilityScore >= 4 ? 'Fairly Saleable Business' : 'Challenging to Sell'}
+              {Number(valuationResults.saleabilityScore) >= 8 ? 'Highly Saleable Business' : 
+               Number(valuationResults.saleabilityScore) >= 6 ? 'Moderately Saleable Business' : 
+               Number(valuationResults.saleabilityScore) >= 4 ? 'Fairly Saleable Business' : 'Challenging to Sell'}
             </h4>
             <p style={{ color: '#374151', marginBottom: '12px' }}>
-              {valuationResults.saleabilityScore >= 8 ? 'Your business is in excellent condition for sale with strong market appeal.' :
-               valuationResults.saleabilityScore >= 6 ? 'Your business has good saleability potential with some areas for improvement.' :
-               valuationResults.saleabilityScore >= 4 ? 'Your business has moderate saleability but would benefit from addressing key areas.' :
+              {Number(valuationResults.saleabilityScore) >= 8 ? 'Your business is in excellent condition for sale with strong market appeal.' :
+               Number(valuationResults.saleabilityScore) >= 6 ? 'Your business has good saleability potential with some areas for improvement.' :
+               Number(valuationResults.saleabilityScore) >= 4 ? 'Your business has moderate saleability but would benefit from addressing key areas.' :
                'Your business may face challenges in the current market. Focus on improving key metrics.'}
             </p>
           </div>
