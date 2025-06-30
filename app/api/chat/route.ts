@@ -135,7 +135,7 @@ export async function POST(req: Request) {
         }
       }
       return NextResponse.json({ reply: assistantResponseContent });
-    } catch (e) {
+    } catch {
       // It's not JSON, so it must be a conversational reply.
       return NextResponse.json({ reply: assistantResponseContent });
     }

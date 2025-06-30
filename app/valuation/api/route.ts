@@ -58,7 +58,6 @@ export type TradeInput = {
 
 export function calculateTradeValuation(input: TradeInput): number {
   const {
-    revenue,
     netProfit,
     ownerWage,
     addBacks,
@@ -127,10 +126,27 @@ export async function POST(req: Request) {
     let calculatedValuation = 0
     let valuationMethod = ''
     let calculationDetails = ''
-    let drivers: string[] = [];
-    let risks: string[] = [];
-    let recommendations: string[] = [];
-    let metrics: any = {};
+    const drivers: string[] = [];
+    const risks: string[] = [];
+    const recommendations: string[] = [];
+    let metrics: {
+      revenue?: number;
+      netProfit?: number;
+      addBacks?: number;
+      sde?: number;
+      multiple?: number;
+      profitMargin?: number;
+      recurringRevenue?: number;
+      ownerInvolvement?: string;
+      model?: string;
+      traffic?: string;
+      inventory?: number;
+      recurring?: boolean;
+      staffCount?: number;
+      yearsInOperation?: number;
+      topClientRevenuePct?: number;
+      assetValue?: number;
+    } = {};
 
     if (body.industry === 'E-commerce') {
       const ecommerceData = body.industry_specific_data || {}

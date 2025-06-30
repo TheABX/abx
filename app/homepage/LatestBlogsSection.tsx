@@ -2,8 +2,16 @@
 import { useEffect, useState, useRef } from 'react'
 import { supabase } from '../lib/supabase'
 
+interface Blog {
+  id: string;
+  slug: string;
+  title: string;
+  image_url: string;
+  readTime: number;
+}
+
 export default function LatestBlogsSection() {
-  const [blogs, setBlogs] = useState<any[]>([])
+  const [blogs, setBlogs] = useState<Blog[]>([])
   const [showLeftArrow, setShowLeftArrow] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
